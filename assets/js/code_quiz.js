@@ -1,6 +1,6 @@
 //Selectors goes here
-var openScreen = document.querySelector("#box-title");
-var openScreenPTag = document.querySelector("#game-description");
+// var openScreen = document.querySelector("#box-title").innerText = "hello";
+// var openScreenPTag = document.querySelector("#game-description");
 
 
 //Global Variables
@@ -10,29 +10,29 @@ var description = "Try to answer the following code-related question within the 
 
 
 
-//Functions 1 - Opening Screen
-function startScreen(){
+// //Functions 1 - Opening Screen
+// function startScreen(){
     
-         openScreen.textContent = openTitle;
+//         openScreen = openTitle;
 
-      console.log(openTitle)  
+//       console.log(openTitle)  
  
-// openScreenPtag.textContent = description;
+// // openScreenPtag.textContent = description;
 
-// console.log(openTitle)
-}
-
-
+// // console.log(openTitle)
+// }
 
 
-//TextContent
 
 
-//Create an append button below ptag
+// //TextContent
 
-//Call Functions
 
-startScreen()
+// //Create an append button below ptag
+
+// //Call Functions
+
+// startScreen()
 
 
 
