@@ -36,20 +36,12 @@ questions: "what is a xys ?",
 ]
 
 
-
-function defaultPage(){
-    openScreen ="Coding Quiz Challenge"
-    openScreen.innerText;
-
-   openScreenPTag.innerText ="Try to answer the following code-related question within the time limit. Keep in mind that the incorrect answer will penalize your scoreTime by ten seconds!";
-
-
-     
-}
+/
+//startQuiz Hide Elements
 
 //Funtion init
 //Timer function
-//startQuiz
+
 //execute quiz
 
 //store results function
