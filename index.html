@@ -13,24 +13,24 @@
         <nav id="Highscore-link">
             <a>Highscore</a>
         </nav>
-        <div id="timer">
-            Timer: <span></span>
+        <div>
+            Timer: <span id="timer"></span>
         </div>
     </header>
     
     <main>
         <div id="container">
-            <div id="box-title">
+            <div id="box-title" data-state="hidden">
               <h1> Coding Quiz Challenge!</h1>
             </div>
-             <p id="description">
+             <p id="description" data-state="hidden">
                 Try to answer the following code-related question within the time limit. Keep in mind that the incorrect answer will penalize your scoreTime by ten seconds!
             </p>
-            <button id="startBtn">
+            <button id="startBtn" data-state="hidden">
                 Start Quiz
             </button>
         </div>
     </main>
-    <!-- <script src="./assets/js/code_quiz.js"></script> -->
+    <script src="./assets/js/code_quiz.js"></script>
 </body>
 </html>
