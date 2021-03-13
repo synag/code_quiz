@@ -18,22 +18,24 @@ var quizQuestion = [
     {
     questions: "what is a string ?",
     answers: {
-        a: "number",
-        b: "string",
-        c: "booleon"
+        1: "number",
+        2: "string",
+        3: "booleon"
     },
-    correctAnswer: "string"
+    correctAnswer:{ 4: "string"
 
 },
+    },
 {
 questions: "what is a xys ?",
     answers: {
-        a: "numbers",
-        b: "stringw",
-        c: "booleon"
+        1: "numbers",
+        2: "stringw",
+        3: "booleon"
     },
-    correctAnswer: "string"
+    correctAnswer:{ 4: "string"
 
+  }
 },
 
 ]
@@ -90,19 +92,32 @@ function createQuiz(){
         // and for each available answer...
         for(letter in currentQuestion.answers){
   
-        //   ...add an HTML radio button
           answers.push(
-            `<h3 style ="background-color:purple; margin:1em; color:white" >
+            `<h3 style ="background-color:purple; margin:1em; color:white; padding:7px; font-size: 15px;" data-answer="wrong">
               ${letter} :
-              ${currentQuestion.answers[letter]}
+              ${currentQuestion.answers[letter]};
             </h3>`
           );
+         
         }
+
+        for(letter in currentQuestion.correctAnswer){
   
-        // add this question and its answers to the output
+          answers.push(
+            `<h3 style ="background-color:purple; margin:1em; color:white; padding:7px; font-size: 15px;" data-answer="correct">
+              ${letter} :
+              ${currentQuestion.correctAnswer[letter]};
+            </h3>`
+  
+          );
+         
+        }
+
+        answers.sort()
+  
         output.push(
-          `<div class="question" style = "font-size:2em; font-weight: bold"> ${currentQuestion.questions} </div>
-          <div class="answers"> ${answers.join('')} </div>`
+          `<div class="question" style = "font-size:40px; font-weight: bold; padding-top:1em; padding-bottom:1em; padding-left:10%"> ${currentQuestion.questions} </div>
+          <div class="answers" style ="text-align:left"> ${answers.join('')} </div>`
         );
       }
     );
