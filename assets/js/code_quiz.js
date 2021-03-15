@@ -134,7 +134,7 @@ function createQuiz(){
       //call the nextQuestions variable and use += to move to next questions in the array
      if (singleQuestion == null){
       
-      return
+     
      }
      
     // finally combine our output list into one string of HTML and put it on the page
@@ -142,25 +142,23 @@ function createQuiz(){
     // .join('');
    
 
-    for (var i = 0; i < 1; i++) {
+    for (var i = 0; i < answerContainer.length; i++) {
       answerContainer[i].addEventListener('click', function(){
-        alert("testing");
-        var clickOption = this.getAttribute("data-answer")
-        // console.log(clickOption)
+        var clickOption = this.getAttribute("data-answer");
+        console.log(clickOption);
         if(clickOption==="correct"){
           var answerResponse = document.createElement("h4");
-          answerResponse.innerHTML = "Correct";
+          answerResponse.innerHTML = "correct";
           containerQuiz.appendChild(answerResponse);
-          score = 2
+          score = 2;
           
         }
         else{
           var answerResponse = document.createElement("h4");
-          answerResponse.innerHTML = "Wrong";
+          answerResponse.innerHTML = "wrong";
           containerQuiz.appendChild(answerResponse);
           secondsLeft = secondsLeft -10;
-          
-         
+        
         }
           
           moveQuestion +=1
@@ -172,32 +170,32 @@ function createQuiz(){
 
   }
   
-  stopPropagation();
+  
   }
 
 
- function endGame(){
-   stopPropagation();
+ function endGame(event){
+  
  
      quizContainer.innerHTML ="hello now"
-     form.style.display ="";
+    //  form.style.display ="";
      
-      initialsSubmit.addEventListener("submit", function(event) {
-        event.preventDefault();
+      // initialsSubmit.addEventListener("submit", function(event) {
+      //   event.preventDefault();
 
-        var userResults = {
-          userInitial: initialsInput.value.trim(),
-          highScore: this.score
-        };
-        localStorage.setItem("userResults", JSON.stringify(userResults));
+      //   var userResults = {
+      //     userInitial: initialsInput.value.trim(),
+      //     highScore: this.score
+      //   };
+      //   localStorage.setItem("userResults", JSON.stringify(userResults));
         
-        if (userResults === "") {
-          return;
-        }
+      //   if (userResults === "") {
+      //     return;
+      //   }
 
        
-      });
-       endScore.innerHTML = score;
+      // // });
+      //  endScore.innerHTML = score;
       }
   
 
@@ -222,7 +220,7 @@ button.addEventListener("click", function() {
 setTime();
 start()
 createQuiz()
-endGame()
+// endGame()
 
 });
 
