@@ -59,6 +59,6 @@ main{
 }
 
 /* Need to fix */
-a h3 :hover {
+h3 :hover {
     background-color: yellow;
   }

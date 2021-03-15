@@ -1,18 +1,23 @@
 //Selectors goes here
 var openScreen = document.querySelector("#box-title")
 var openScreenPTag = document.querySelector('p');
-var answerContainer = document.getElementsByClassName("answers")
 var button = document.querySelector('#startBtn')
-var input = document.querySelector(".input")
 var timeEl = document.querySelector("#timer");
-var containerQuiz = document.querySelector("#quizContainer")
+var containerQuiz = document.querySelector("#quizContainer");
+var answerContainer = document.getElementsByClassName("answers");
+var form = document.querySelector(".formElement");
+var initialsInput = document.querySelector("#input");
+var initialsSubmit = document.querySelector("#formSubmit");
+var endScore = document.querySelector("#score");
+
+
 
 
 
 //Global Variables
 var secondsLeft = 75;
 var score = ""
-var output = []
+var output = [];
 var moveQuestion= 0;
 
 var quizQuestion = [ 
@@ -51,16 +56,18 @@ function openingPage(){
 openScreen.style.display = "";
 openScreenPTag.style.display = "";
 button.style.display = "";
+form.style.display ="none";
 }
 
 function start() {
+ ;
 
 openScreen.style.display = "none";
 openScreenPTag.style.display = "none";
 button.style.display = "none";
+form.style.display = "none";
 
 }
-
 
 
 //Timer Function
@@ -125,83 +132,98 @@ function createQuiz(){
       
       var singleQuestion = output[moveQuestion]
       //call the nextQuestions variable and use += to move to next questions in the array
+     if (singleQuestion == null){
+      
+      return
+     }
      
-    
     // finally combine our output list into one string of HTML and put it on the page
     containerQuiz.innerHTML = singleQuestion
     // .join('');
    
 
-    for (var i = 0; i < answerContainer.length; i++) {
+    for (var i = 0; i < 1; i++) {
       answerContainer[i].addEventListener('click', function(){
-        alert("testing")
+        alert("testing");
         var clickOption = this.getAttribute("data-answer")
-        console.log(clickOption)
+        // console.log(clickOption)
         if(clickOption==="correct"){
           var answerResponse = document.createElement("h4");
-          answerResponse.textContent = "Correct";
-          containerQuiz.append(answerResponse);
-        
+          answerResponse.innerHTML = "Correct";
+          containerQuiz.appendChild(answerResponse);
+          score = 2
+          
         }
         else{
           var answerResponse = document.createElement("h4");
-          answerResponse.textContent = "Wrong";
-          containerQuiz.append(answerResponse);
+          answerResponse.innerHTML = "Wrong";
+          containerQuiz.appendChild(answerResponse);
+          secondsLeft = secondsLeft -10;
+          
+         
         }
-        moveQuestion +=1;
-        createQuiz()
+          
+          moveQuestion +=1
+          setTimeout(function(){ createQuiz(); }, 1000);
+        
+       
+        
       })
 
   }
+  
+  stopPropagation();
+  }
+
+
+ function endGame(){
+   stopPropagation();
+ 
+     quizContainer.innerHTML ="hello now"
+     form.style.display ="";
+     
+      initialsSubmit.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        var userResults = {
+          userInitial: initialsInput.value.trim(),
+          highScore: this.score
+        };
+        localStorage.setItem("userResults", JSON.stringify(userResults));
+        
+        if (userResults === "") {
+          return;
+        }
+
+       
+      });
+       endScore.innerHTML = score;
+      }
+  
+
+
   
 
 
 
 
-    //   if (element.matches(".answers")) {
-    //     var selectedAnswer = element.getAttribute("data-answer");
-        
-    //     if (selectedAnswer !=="correct") {
-    //       element.setAttribute("style", "background-color:red");
-    //       append
-    //     } else {
-    //       element.setAttribute("style", "background -color: green");
-    //     }
-    //   }
-      
-    // });
-
-  }
-// function localStorage(){
-// localStorage.setItem("todos", JSON.stringify(todos));
-
-
-// }
-
-function localStorageGet(){
 
 
 
-}
-//game over function
-//execute quiz
 
-//store results function
-// localStorage.setItem("todos", JSON.stringify(todos));
-
-//get result function
-// var storedTodos = JSON.parse(localStorage.getItem("todos"));
 
 
 
 //startQuiz Hide Elements
 // setTime();
 
-openingPage()
+openingPage();
 button.addEventListener("click", function() {
 setTime();
 start()
 createQuiz()
+endGame()
+
 });
 
 
