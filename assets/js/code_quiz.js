@@ -21,6 +21,7 @@ var secondsLeft = 75;
 var score = ""
 var output = [];
 var moveQuestion= 0;
+var initialInput =[]
 
 var quizQuestion = [ 
     {
@@ -58,19 +59,17 @@ function openingPage(){
 openScreen.style.display = "";
 openScreenPTag.style.display = "";
 button.style.display = "";
-form.style.display ="none";
 highScoreH1.style.display ="none";
 backBtn.style.display ="none";
 highScoreBtn.style.display ="none";
 }
 
 function start() {
- ;
+ 
 
 openScreen.style.display = "none";
 openScreenPTag.style.display = "none";
 button.style.display = "none";
-form.style.display = "none";
 highScoreH1.style.display ="none";
 backBtn.style.display ="none";
 highScoreBtn.style.display ="none";
@@ -124,7 +123,7 @@ function createQuiz(){
             </h3>`
           );
         }
-        answers.sort()
+
         output.push(
           `<div class="question" style = "font-size:40px; font-weight: bold; padding-top:1em; padding-bottom:1em; padding-left:10%"> ${currentQuestion.questions} </div>
           <div style ="text-align:left"> ${answers.join('')} </div>`
@@ -138,15 +137,14 @@ function createQuiz(){
     
     //  }
      
-    if (typeof singleQuestion === "undefined"){ // finally combine our output list into one string of HTML and put it on the page
-      // return
-      endGame()
-      containerQuiz.innerHTML = "All Done";
-      containerQuiz.setAttribute("class", "form-container");
-      var inputButton = document.createElement("input")
-      containerQuiz.appendChild(inputButton);
-      var button = document.createElement("button")
-      
+    if (typeof singleQuestion === "undefined"){ 
+     
+
+      initialInput.push(
+        '<div class ="form-container formElement"><h1 class="formElement">"All Done"</h1><p class="formElement">Your final score is</p> <span class="formElement" id="score"></span><form class="formElement"> <label for="initials" class ="formElement">Enter Initials:</label><input type="text" id="initials" class="formElement"><input type="submit" value="Submit" class ="formElement" id="formSubmit"></form></div>' 
+      );
+      containerQuiz.innerHTML = initialInput
+    
     }
 
     else{
@@ -162,7 +160,7 @@ function createQuiz(){
           var answerResponse = document.createElement("h4");
           answerResponse.innerHTML = "correct";
           containerQuiz.appendChild(answerResponse);
-          score = 2;
+        
           
         }
         else{

@@ -70,15 +70,29 @@ h3 :hover {
 }
 
 .form-container h1{
-    padding-top: 3em;
-    font-size: 2em;
+    padding-top: 1em;
+    font-size: 1em;
     padding-bottom: 1em;
 }
 
 .form-container p{
-    padding-bottom: 1em;    
+    padding-bottom: 1em; 
+    font-size: 20px;   
 }
 
+
+label{
+    font-size: 20px;
+    margin-right:5px;
+}
+
+#formSubmit{
+    font-size: 20px;
+    background-color:purple;
+    color: white;
+    margin-left:15px;
+    
+}
 
 .highscorePage{
 padding-top: 2em;
@@ -95,3 +109,4 @@ padding-bottom: 1em;
 #highScore{
     font-size: 25px;
 }
+
