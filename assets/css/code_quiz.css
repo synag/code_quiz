@@ -62,3 +62,36 @@ main{
 h3 :hover {
     background-color: yellow;
   }
+
+.form-container{
+    padding-top: 3em;
+    font-size: 2em;
+    padding-bottom: 1em;
+}
+
+.form-container h1{
+    padding-top: 3em;
+    font-size: 2em;
+    padding-bottom: 1em;
+}
+
+.form-container p{
+    padding-bottom: 1em;    
+}
+
+
+.highscorePage{
+padding-top: 2em;
+font-size: 2em;
+padding-bottom: 1em;
+}
+
+
+#backBtn{
+    margin-right: 2em;
+    font-size: 25px;
+}
+
+#highScore{
+    font-size: 25px;
+}
