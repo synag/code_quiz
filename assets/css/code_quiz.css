@@ -104,9 +104,13 @@ padding-bottom: 1em;
 #backBtn{
     margin-right: 2em;
     font-size: 25px;
+    background-color:purple;
+    color:white
 }
 
 #highScore{
     font-size: 25px;
+    background-color:purple;
+    color:white
 }
 

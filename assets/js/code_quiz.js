@@ -5,14 +5,11 @@ var button = document.querySelector('#startBtn')
 var timeEl = document.querySelector("#timer");
 var containerQuiz = document.querySelector("#quizContainer");
 var answerContainer = document.getElementsByClassName("answers");
-var form = document.querySelector(".formElement");
+// var form = document.querySelector(".formElement");
 var initialsInput = document.querySelector("#initials");
 var initialsSubmit = document.querySelector("#formSubmit");
 var endScore = document.querySelector("#score");
-var highScoreH1 = document.querySelector(".highscorePage")
-var backBtn = document.querySelector('#backBtn')
-var highScoreBtn =document.querySelector("#highScore")
-
+var backbtn = document.querySelector("#backBtn")
 
 
 
@@ -21,8 +18,11 @@ var secondsLeft = 75;
 var score = ""
 var output = [];
 var moveQuestion= 0;
-var initialInput =[]
+var initialInput =[];
+var highlightPage =[];
 
+
+//quiz questions and answers
 var quizQuestion = [ 
     {
     questions: "what is a string ?",
@@ -53,31 +53,34 @@ questions: "what is a xys ?",
 
 
 
-//start Function Hides the default page 
+//opening page is the default page for the program
 
 function openingPage(){
+// highScoreH1.style.display ="none";
+// backBtn.style.display ="none";
+// highScoreBtn.style.display ="none";
 openScreen.style.display = "";
 openScreenPTag.style.display = "";
 button.style.display = "";
-highScoreH1.style.display ="none";
-backBtn.style.display ="none";
-highScoreBtn.style.display ="none";
+// form.style.display ="none";
+
 }
 
+//Start function hides the opening default page 
 function start() {
- 
 
 openScreen.style.display = "none";
 openScreenPTag.style.display = "none";
 button.style.display = "none";
-highScoreH1.style.display ="none";
-backBtn.style.display ="none";
-highScoreBtn.style.display ="none";
+// form.style.display = "none";
+// highScoreH1.style.display ="none";
+// backBtn.style.display ="none";
+// highScoreBtn.style.display ="none";
 
 }
 
 
-//Timer Function
+//Set timer function
 function setTime() {
   // Sets interval in variable
   var timerInterval = setInterval(function() {
@@ -92,8 +95,8 @@ function setTime() {
     }
   }, 1000);
 }
-
-function createQuiz(){
+//creates quiz and displays the input your initials and see your score
+async function createQuiz(){
     // variable to store the HTML output
      output = [];
     // for each question...
@@ -132,25 +135,31 @@ function createQuiz(){
     );
       
           
-      var singleQuestion = output[moveQuestion]
+      var singleQuestion = output[moveQuestion];
       
     
     //  }
      
     if (typeof singleQuestion === "undefined"){ 
-     
 
       initialInput.push(
-        '<div class ="form-container formElement"><h1 class="formElement">"All Done"</h1><p class="formElement">Your final score is</p> <span class="formElement" id="score"></span><form class="formElement"> <label for="initials" class ="formElement">Enter Initials:</label><input type="text" id="initials" class="formElement"><input type="submit" value="Submit" class ="formElement" id="formSubmit"></form></div>' 
+        '<div class ="form-container formElement"><h1 class="formElement">"All Done"</h1><p class="formElement">Your final score is</p> <span class="formElement" id="score"></span><form class="formElement"> <label for="initials" class ="formElement">Enter Initials:</label><input type="text" id="initials" class="formElement"><input type="submit" value="Submit" id="formSubmit"></form></div>' 
+
+
       );
-      containerQuiz.innerHTML = initialInput
-    
+      
+      containerQuiz.innerHTML = initialInput;
+      initialsInput.addEventListener("click", function(event) {
+      event.preventDefault();
+      
+      });
     }
 
     else{
       containerQuiz.innerHTML = singleQuestion
     }
-   
+    
+
 //Need to fix bug of mulitple answer apearing
     for (var i = 0; i < answerContainer.length; i++) {
       answerContainer[i].addEventListener('click', function(){
@@ -160,7 +169,7 @@ function createQuiz(){
           var answerResponse = document.createElement("h4");
           answerResponse.innerHTML = "correct";
           containerQuiz.appendChild(answerResponse);
-        
+          score = 2;
           
         }
         else{
@@ -172,15 +181,10 @@ function createQuiz(){
         
         }
         
-        // if (typeof output === "undefined"){
-        //   endGame()
-        //   stopPropagation()
-        // }
+       
         moveQuestion +=1
 
-          setTimeout(function(){ createQuiz(); }, 1000);
-          
-
+          setTimeout(function(){createQuiz();}, 1000);
           
       })
 
@@ -189,72 +193,65 @@ function createQuiz(){
         
   }
 
+//Last page with the score 
+  async function highlightScreen() {
+    await createQuiz()
 
- function endGame(){
-  
-  form.style.display =""; 
-
-
-  var userResults = {
-    userInitial: initialsInput.value.trim(),
-    highScore: " "
-    };
-     
-    localStorage.setItem("userResults", JSON.stringify(userResults));
-
-     initialsSubmit.addEventListener("submit", function() {
-      
+    highlightPage.push(
+      ' <h1 class="highscorePage">Highscores</h1><button  id ="backBtn">Back </button><button  id ="highScore">Highscore</button>' 
+    );
     
-      });
-      // if (userResults === "") {
-      //  alert("please add credentials")
-      //  }
+    containerQuiz.innerHTML = highlightPage;
 
-       
-    
-      //  endScore.innerHTML = score;
-
-      // if(event!=null) {
-      //   form.style.display = "none";
-      //   highLightScreen()
-      // }
-      }
- 
- function highLightScreen(){
-    highScoreH1.style.display ="";
-    backBtn.style.display ="";
-    highScoreBtn.style.display ="";
     backBtn.addEventListener("click", function() {
       openingPage();
+    });
     
-  });
-  backBtn.addEventListener("click", function() {
-    //display user score below
-  });
-
-}   
+  }
 
 
+//Store into local storage function 
+// localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
 
 
-
-
-
+//Get items from local storage function 
+// var lastGrade = JSON.parse(localStorage.getItem("studentGrade"));
+// if (lastGrade !== null) {
+//   document.getElementById("saved-name").innerHTML = lastGrade.student;
+//   document.getElementById("saved-grade").innerHTML = lastGrade.grade;
+//   document.getElementById("saved-comment").innerHTML = lastGrade.comment;
+//   } else {
+//     return;
+//   }
+// }
 
 
 
 
 openingPage();
 
-button.addEventListener("click", function() {
+//buttons
+
+button.addEventListener("click", function(event) {
+  event.preventDefault()
+  
 setTime();
 start()
 createQuiz()
-endGame()
-highLightScreen()
+// highlightScreen()
+//  setTimeout(function(){highlightScreen();}, 10000);
+// // highlightScreen()
+
+
 
 });
 
+backBtn.addEventListener("click", function(event) {
+  event.preventDefault()
+openingPage();
+
+
+});
 
 
 
