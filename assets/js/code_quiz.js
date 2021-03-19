@@ -143,16 +143,34 @@ async function createQuiz(){
     if (typeof singleQuestion === "undefined"){ 
 
       initialInput.push(
-        '<div class ="form-container formElement"><h1 class="formElement">"All Done"</h1><p class="formElement">Your final score is</p> <span class="formElement" id="score"></span><form class="formElement"> <label for="initials" class ="formElement">Enter Initials:</label><input type="text" id="initials" class="formElement"><input type="submit" value="Submit" id="formSubmit"></form></div>' 
+        '<h1 class="formElement">"All Done"</h1>'
 
-
+      
       );
       
-      containerQuiz.innerHTML = initialInput;
-      initialsInput.addEventListener("click", function(event) {
-      event.preventDefault();
       
-      });
+       containerQuiz.innerHTML = initialInput;
+      // initialsInput.addEventListener("click", function(event) {
+      // event.preventDefault();
+      var doneMessage = document.createElement('h1')
+      var button = document.createElement('input');
+      var inputBox = document.createElement('input')
+      var element=document.createElement('h2')
+      var finalTime = " Your final Score is "+ secondsLeft;
+      var doneH1 = "All Done"
+         doneMessage.setAttribute("class", "formElement");
+         inputBox.setAttribute("type", "text");
+        button.setAttribute("type", "submit");
+        //  button.setAttribute("type", "submit");
+        doneMessage.textContent = doneH1;
+        element.textContent = finalTime;
+        containerQuiz.append(doneMessage);
+        containerQuiz.append(element);
+        containerQuiz.append(inputBox);
+        containerQuiz.append(button);
+     
+
+      // });
     }
 
     else{
@@ -202,7 +220,7 @@ async function createQuiz(){
     );
     
     containerQuiz.innerHTML = highlightPage;
-
+//button to the home screen
     backBtn.addEventListener("click", function() {
       openingPage();
     });
@@ -238,20 +256,12 @@ button.addEventListener("click", function(event) {
 setTime();
 start()
 createQuiz()
-// highlightScreen()
-//  setTimeout(function(){highlightScreen();}, 10000);
-// // highlightScreen()
+
 
 
 
 });
 
-backBtn.addEventListener("click", function(event) {
-  event.preventDefault()
-openingPage();
-
-
-});
 
 
 
