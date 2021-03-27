@@ -1,21 +1,20 @@
-//Selectors goes here
-var openScreen = document.querySelector("#box-title")
-var openScreenPTag = document.querySelector('p');
-var button = document.querySelector('#startBtn')
+var openScreen = document.querySelector("#box-title");
+var openScreenPTag = document.querySelector('#description');
+var button = document.querySelector('#startBtn');
 var timeEl = document.querySelector("#timer");
 var containerQuiz = document.querySelector("#quizContainer");
 var answerContainer = document.getElementsByClassName("answers");
 // var form = document.querySelector(".formElement");
-var initialsInput = document.querySelector("#initials");
-var initialsSubmit = document.querySelector("#formSubmit");
+ var initialsInput = document.querySelector("#initial");
+//  var initialsSubmit = document.querySelector("#formSubmit");
 var endScore = document.querySelector("#score");
-var backbtn = document.querySelector("#backBtn")
-
+var backbtn = document.querySelector("#backBtn"); //Maybe
+var containerAll = document.querySelector(".containerAll") //good
 
 
 //Global Variables
 var secondsLeft = 75;
-var score = ""
+var score = "";
 var output = [];
 var moveQuestion= 0;
 var initialInput =[];
@@ -25,44 +24,75 @@ var highlightPage =[];
 //quiz questions and answers
 var quizQuestion = [ 
     {
-    questions: "what is a string ?",
+    questions: "Which html tag defines and article?",
     answers: {
-        1: "number",
-        2: "string",
-        3: "booleon"
+        1: "aside",
+        2: "b",
+        3: "header"
     },
-    correctAnswer:{ 4: "string"
+    correctAnswer:{ 4: "article"
 
 },
     },
 {
-questions: "what is a xys ?",
+questions: "what does the background-color css do?",
     answers: {
-        1: "numbers",
-        2: "stringw",
-        3: "booleon"
+        1: "sets color of image",
+        2: "sets the image pixel",
+        3: "it sets the text color"
     },
-    correctAnswer:{ 4: "string"
+    correctAnswer:{ 4: "sets background color of an element"
 
   }
 },
+{
+  questions: "what create space around elements, outside of any defined borders ?",
+      answers: {
+          1: "padding",
+          2: "border",
+          3: "element"
+      },
+      correctAnswer:{ 4: "margin"
+  
+    }
+  },
+  {
+    questions: "what properties are used to generate space around an element's content, inside of any defined borders?",
+        answers: {
+            1: "border",
+            2: "margin",
+            3: "element"
+        },
+        correctAnswer:{ 4: "padding"
+    
+      }
+    },
+    {
+      questions: "which operator assigns value to variable?",
+          answers: {
+              1: "+",
+              2: "-",
+              3: "*"
+          },
+          correctAnswer:{ 4: "="
+      
+        }
+      },
 
 ]
 
-
-
-
+var results = {
+        initial: initialsInput.value,
+      score: finalScore
+   };
 
 //opening page is the default page for the program
 
 function openingPage(){
-// highScoreH1.style.display ="none";
-// backBtn.style.display ="none";
-// highScoreBtn.style.display ="none";
+
 openScreen.style.display = "";
 openScreenPTag.style.display = "";
 button.style.display = "";
-// form.style.display ="none";
 
 }
 
@@ -72,13 +102,7 @@ function start() {
 openScreen.style.display = "none";
 openScreenPTag.style.display = "none";
 button.style.display = "none";
-// form.style.display = "none";
-// highScoreH1.style.display ="none";
-// backBtn.style.display ="none";
-// highScoreBtn.style.display ="none";
-
 }
-
 
 //Set timer function
 function setTime() {
@@ -87,16 +111,18 @@ function setTime() {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
 
-    if(secondsLeft === 0) {
+    if(secondsLeft <= 0) {
       // Stops execution of action at set interval
-      clearInterval(timerInterval);
+      clearTimeout(timerInterval);
+      endGame();
+      secondsLeft = "";
       // Calls function to create and append image
     //  sendMessage();
     }
   }, 1000);
 }
 //creates quiz and displays the input your initials and see your score
-async function createQuiz(){
+ function createQuiz(){
     // variable to store the HTML output
      output = [];
     // for each question...
@@ -109,9 +135,9 @@ async function createQuiz(){
         for(letter in currentQuestion.answers){
 
           answers.push(
-            `<h3 id="hover" style ="background-color:purple; margin:1em; color:white; padding:7px; font-size: 15px;" data-answer="wrong" class="answers">
+            `<h3 id="hover" style ="background-color:purple; margin:1em; color:white; padding:7px; width:fit-content;font-size: 25px;margin-left: 49px" data-answer="wrong" class="answers">
               ${letter} :
-              ${currentQuestion.answers[letter]};
+              ${currentQuestion.answers[letter]}
             </h3>`
           );
          
@@ -120,64 +146,32 @@ async function createQuiz(){
         for(letter in currentQuestion.correctAnswer){
   
           answers.push(
-            `<h3 id="hover" style ="background-color:purple; margin:1em; color:white; padding:7px; font-size: 15px" data-answer="correct" class="answers">
+            `<h3 id="hover" style ="background-color:purple; margin:1em; color:white; padding:7px; font-size: 25px; width:fit-content; margin-left: 49px" data-answer="correct" class="answers">
               ${letter} :
-              ${currentQuestion.correctAnswer[letter]};
+              ${currentQuestion.correctAnswer[letter]}
             </h3>`
           );
         }
 
         output.push(
           `<div class="question" style = "font-size:40px; font-weight: bold; padding-top:1em; padding-bottom:1em; padding-left:10%"> ${currentQuestion.questions} </div>
-          <div style ="text-align:left"> ${answers.join('')} </div>`
+          <div style ="text-align:left; width:max-content"> ${answers.join('')} </div>`
         );
       }
     );
       
           
       var singleQuestion = output[moveQuestion];
-      
-    
-    //  }
      
-    if (typeof singleQuestion === "undefined"){ 
+    if (typeof singleQuestion === "undefined"|| secondsLeft <=0){ 
 
-      initialInput.push(
-        '<h1 class="formElement">"All Done"</h1>'
-
-      
-      );
-      
-      
-       containerQuiz.innerHTML = initialInput;
-      // initialsInput.addEventListener("click", function(event) {
-      // event.preventDefault();
-      var doneMessage = document.createElement('h1')
-      var button = document.createElement('input');
-      var inputBox = document.createElement('input')
-      var element=document.createElement('h2')
-      var finalTime = " Your final Score is "+ secondsLeft;
-      var doneH1 = "All Done"
-         doneMessage.setAttribute("class", "formElement");
-         inputBox.setAttribute("type", "text");
-        button.setAttribute("type", "submit");
-        //  button.setAttribute("type", "submit");
-        doneMessage.textContent = doneH1;
-        element.textContent = finalTime;
-        containerQuiz.append(doneMessage);
-        containerQuiz.append(element);
-        containerQuiz.append(inputBox);
-        containerQuiz.append(button);
-     
-
-      // });
+      endGame()
     }
 
     else{
       containerQuiz.innerHTML = singleQuestion
     }
-    
-
+  
 //Need to fix bug of mulitple answer apearing
     for (var i = 0; i < answerContainer.length; i++) {
       answerContainer[i].addEventListener('click', function(){
@@ -187,7 +181,7 @@ async function createQuiz(){
           var answerResponse = document.createElement("h4");
           answerResponse.innerHTML = "correct";
           containerQuiz.appendChild(answerResponse);
-          score = 2;
+          
           
         }
         else{
@@ -195,43 +189,24 @@ async function createQuiz(){
           answerResponse.innerHTML = "wrong";
           containerQuiz.appendChild(answerResponse);
           secondsLeft = secondsLeft -10;
-          
-        
         }
-        
-       
-        moveQuestion +=1
+        moveQuestion +=1;
 
           setTimeout(function(){createQuiz();}, 1000);
           
-      })
-
-  }
-  
-        
-  }
-
-//Last page with the score 
-  async function highlightScreen() {
-    await createQuiz()
-
-    highlightPage.push(
-      ' <h1 class="highscorePage">Highscores</h1><button  id ="backBtn">Back </button><button  id ="highScore">Highscore</button>' 
-    );
-    
-    containerQuiz.innerHTML = highlightPage;
-//button to the home screen
-    backBtn.addEventListener("click", function() {
-      openingPage();
-    });
-    
+      });
+  }     
   }
 
 
 //Store into local storage function 
-// localStorage.setItem("studentGrade", JSON.stringify(studentGrade));
+function storeItem() {
 
+ localStorage.setItem("results", JSON.stringify(results));
 
+}
+
+function getItem(){
 //Get items from local storage function 
 // var lastGrade = JSON.parse(localStorage.getItem("studentGrade"));
 // if (lastGrade !== null) {
@@ -241,9 +216,26 @@ async function createQuiz(){
 //   } else {
 //     return;
 //   }
-// }
+}
+var enterScore = document.querySelector(".enterScore");
+var finalScoreText = document.querySelector("#finalScore");
+var submitBtn = document.querySelector("#submitBtn");
+submitBtn.addEventListener("click", function(){
+storeItem()
+});
 
 
+
+
+
+
+function endGame(){
+ var finalScore = secondsLeft;
+ containerQuiz.style.display =("none");
+ enterScore.style.display =("block");
+ 
+ finalScoreText.textContent = ("Your final score is " + finalScore);
+};
 
 
 openingPage();
@@ -251,16 +243,37 @@ openingPage();
 //buttons
 
 button.addEventListener("click", function(event) {
-  event.preventDefault()
+  event.preventDefault();
   
 setTime();
-start()
-createQuiz()
-
-
-
+start();
+createQuiz();
 
 });
+
+// need to update listener and storage
+//clean up bad code
+// document.querySelector("#formSubmit").addEventListener("click", function(event) {
+
+ 
+
+//   var results = {
+//     initials: initialsInput.value,
+//     score: ""
+//  };
+//     event.preventDefault();
+
+// // var initialsInput = document.querySelector("#initials");
+// // var initialsSubmit = document.querySelector("#formSubmit");
+// //   storeItem();
+ 
+//   });
+
+
+
+ 
+
+
 
 
 
