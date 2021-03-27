@@ -2,7 +2,7 @@ header{
     display: flex;
     height: 6em;
     width: 100%;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     justify-content: space-between;
     
 }
@@ -30,7 +30,7 @@ header div{
 main{
     margin-left: 30%;
     margin-right: 30%;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     height:30em;
     margin-top: 10em;
     text-align: center;
@@ -50,7 +50,7 @@ main{
  margin: 4%;
 
 }
-#startBtn{
+#startBtn,#submitBtn,#backBtn,#highScore, #formSubmit{
     color:white;
     background-color: purple;
     font-size: 30px;
@@ -59,21 +59,16 @@ main{
 }
 
 /* Need to fix */
-h3 :hover {
-    background-color: yellow;
+h3:hover,button:hover{
+    background-color: white;
   }
 
-.form-container{
+.form-container,.form-container h1{
     padding-top: 3em;
     font-size: 2em;
     padding-bottom: 1em;
 }
 
-.form-container h1{
-    padding-top: 1em;
-    font-size: 1em;
-    padding-bottom: 1em;
-}
 
 .form-container p{
     padding-bottom: 1em; 
@@ -86,13 +81,13 @@ label{
     margin-right:5px;
 }
 
-#formSubmit{
+/* #formSubmit{
     font-size: 20px;
     background-color:purple;
     color: white;
     margin-left:15px;
     
-}
+} */
 
 .highscorePage{
 padding-top: 2em;
@@ -101,7 +96,7 @@ padding-bottom: 1em;
 }
 
 
-#backBtn{
+/* #backBtn{
     margin-right: 2em;
     font-size: 25px;
     background-color:purple;
@@ -112,8 +107,17 @@ padding-bottom: 1em;
     font-size: 25px;
     background-color:purple;
     color:white
-}
+} */
 
 .enterScore{
     display: none;
+}
+
+.scoreH1{
+    font-size: 2em;
+    margin-bottom: 1em;
+}
+#finalScore{
+    font-size: 23px;
+    margin-bottom: 1em;
 }

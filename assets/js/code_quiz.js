@@ -19,6 +19,7 @@ var output = [];
 var moveQuestion= 0;
 var initialInput =[];
 var highlightPage =[];
+var singleQuestion = []
 
 
 //quiz questions and answers
@@ -111,7 +112,7 @@ function setTime() {
     secondsLeft--;
     timeEl.textContent = secondsLeft;
 
-    if(secondsLeft <= 0) {
+    if(secondsLeft <= 0||typeof singleQuestion === "undefined") {
       // Stops execution of action at set interval
       clearTimeout(timerInterval);
       endGame();
@@ -135,7 +136,7 @@ function setTime() {
         for(letter in currentQuestion.answers){
 
           answers.push(
-            `<h3 id="hover" style ="background-color:purple; margin:1em; color:white; padding:7px; width:fit-content;font-size: 25px;margin-left: 49px" data-answer="wrong" class="answers">
+            `<h3 style ="background-color:purple; margin:1em; color:white; padding:7px; width:fit-content;font-size: 25px;margin-left: 49px" data-answer="wrong" class="answers">
               ${letter} :
               ${currentQuestion.answers[letter]}
             </h3>`
@@ -146,7 +147,7 @@ function setTime() {
         for(letter in currentQuestion.correctAnswer){
   
           answers.push(
-            `<h3 id="hover" style ="background-color:purple; margin:1em; color:white; padding:7px; font-size: 25px; width:fit-content; margin-left: 49px" data-answer="correct" class="answers">
+            `<h3 style ="background-color:purple; margin:1em; color:white; padding:7px; font-size: 25px; width:fit-content; margin-left: 49px" data-answer="correct" class="answers">
               ${letter} :
               ${currentQuestion.correctAnswer[letter]}
             </h3>`
@@ -161,9 +162,9 @@ function setTime() {
     );
       
           
-      var singleQuestion = output[moveQuestion];
+      singleQuestion = output[moveQuestion];
      
-    if (typeof singleQuestion === "undefined"|| secondsLeft <=0){ 
+    if (typeof singleQuestion === "undefined"){ 
 
       endGame()
     }
