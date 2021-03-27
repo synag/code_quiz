@@ -20,6 +20,7 @@ var moveQuestion= 0;
 var initialInput =[];
 var highlightPage =[];
 var singleQuestion = []
+var finalScore =0
 
 
 //quiz questions and answers
@@ -203,7 +204,7 @@ function setTime() {
 //Store into local storage function 
 function storeItem() {
 
- localStorage.setItem("results", JSON.stringify(results));
+ localStorage.setItem(initialsInput.value, finalScore);
 
 }
 
@@ -231,7 +232,7 @@ storeItem()
 
 
 function endGame(){
- var finalScore = secondsLeft;
+ finalScore = secondsLeft;
  containerQuiz.style.display =("none");
  enterScore.style.display =("block");
  
@@ -252,12 +253,12 @@ createQuiz();
 
 });
 
-// need to update listener and storage
-//clean up bad code
-// document.querySelector("#formSubmit").addEventListener("click", function(event) {
 
- 
+ document.querySelector("#formSubmit").addEventListener("click", function(event) {
+   event.stopPropagation()
+   storeItem()
 
+ });
 //   var results = {
 //     initials: initialsInput.value,
 //     score: ""
