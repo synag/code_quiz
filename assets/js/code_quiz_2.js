@@ -1,6 +1,36 @@
+ highScore = document.querySelector("#scoreDisplay");
+ highScoreBtn = document.querySelector("#highScore")
+ 
+
+  function getItem(){
+    var keyValueArray = [];
+    for (let i = 0; i < localStorage.length; i++) {
+     var key = Object.keys(localStorage);
+     var storageValue = localStorage.getItem(key[i]);
+     var sortStorageValue =[];
+     var rankDisplay ="";
+     
+   if(sortStorageValue.length!==localStorage.length){
+        keyValueArray[i] = storageValue +" : "+ key[i];
+       sortStorageValue = keyValueArray.sort();
+       var scoreEl = document.createElement("h3");
+       scoreEl.textContent += ((1+i)+") "+sortStorageValue[i]);
+       highScore.appendChild(scoreEl);
+   }
+   
+  }
+  }
+ 
  backBtn.addEventListener("click", function(event) {
    event.preventDefault()
    window.location.href = "./index.html";
 
   });
+  
+  highScoreBtn.addEventListener("click", function(event) {
+    event.preventDefault()
+   
+    getItem()
+   });
 
+ 

@@ -208,22 +208,25 @@ function storeItem() {
 
 }
 
-function getItem(){
-//Get items from local storage function 
-// var lastGrade = JSON.parse(localStorage.getItem("studentGrade"));
-// if (lastGrade !== null) {
-//   document.getElementById("saved-name").innerHTML = lastGrade.student;
-//   document.getElementById("saved-grade").innerHTML = lastGrade.grade;
-//   document.getElementById("saved-comment").innerHTML = lastGrade.comment;
-//   } else {
-//     return;
-//   }
-}
+// function getItem(){
+//   var keyValueArray = [];
+//   for (let i = 0; i < localStorage.length; i++) {
+//    var key = Object.keys(localStorage)
+//    var storageValue = localStorage.getItem(key[i]);
+//       keyValueArray[i] = storageValue +" : "+ key[i];
+//      console.log(keyValueArray);
+//   //  localStorageArray[i] = localStorage.key(i)+localStorage.getItem(localStorage.key(i));
+//   // }
+// }
+// }
+
 var enterScore = document.querySelector(".enterScore");
 var finalScoreText = document.querySelector("#finalScore");
 var submitBtn = document.querySelector("#submitBtn");
 submitBtn.addEventListener("click", function(){
 storeItem()
+getItem()
+
 });
 
 
@@ -254,23 +257,12 @@ createQuiz();
 });
 
 
- document.querySelector("#formSubmit").addEventListener("click", function(event) {
-   event.stopPropagation()
-   storeItem()
+//  document.querySelector("#formSubmit").addEventListener("click", function(event) {
+//    event.stopPropagation()
+//    storeItem()
 
- });
-//   var results = {
-//     initials: initialsInput.value,
-//     score: ""
-//  };
-//     event.preventDefault();
-
-// // var initialsInput = document.querySelector("#initials");
-// // var initialsSubmit = document.querySelector("#formSubmit");
-// //   storeItem();
- 
-//   });
-
+//  });
+// \
 
 
  
