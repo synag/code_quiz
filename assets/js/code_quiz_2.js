@@ -8,13 +8,12 @@
      var key = Object.keys(localStorage);
      var storageValue = localStorage.getItem(key[i]);
      var sortStorageValue =[];
-     var rankDisplay ="";
+     
      
    if(sortStorageValue.length!==localStorage.length){
         keyValueArray[i] = storageValue +" : "+ key[i];
-       sortStorageValue = keyValueArray.sort();
        var scoreEl = document.createElement("h3");
-       scoreEl.textContent += ((1+i)+") "+sortStorageValue[i]);
+       scoreEl.textContent = ((1+i)+") "+keyValueArray[i]);
        highScore.appendChild(scoreEl);
    }
    
