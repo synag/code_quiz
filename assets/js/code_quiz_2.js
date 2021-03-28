@@ -12,12 +12,15 @@
      
    if(sortStorageValue.length!==localStorage.length){
         keyValueArray[i] = storageValue +" : "+ key[i];
-       var scoreEl = document.createElement("h3");
+      }
+  }
+       for (let i = 0; i < localStorage.length; i++){
+        var scoreEl = document.createElement("h3");
        scoreEl.textContent = ((1+i)+") "+keyValueArray[i]);
        highScore.appendChild(scoreEl);
-   }
-   
-  }
+      }
+   //need two for loops - last one sorts and appends to page 
+  
   }
  
  backBtn.addEventListener("click", function(event) {

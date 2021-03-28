@@ -208,17 +208,7 @@ function storeItem() {
 
 }
 
-// function getItem(){
-//   var keyValueArray = [];
-//   for (let i = 0; i < localStorage.length; i++) {
-//    var key = Object.keys(localStorage)
-//    var storageValue = localStorage.getItem(key[i]);
-//       keyValueArray[i] = storageValue +" : "+ key[i];
-//      console.log(keyValueArray);
-//   //  localStorageArray[i] = localStorage.key(i)+localStorage.getItem(localStorage.key(i));
-//   // }
-// }
-// }
+
 
 var enterScore = document.querySelector(".enterScore");
 var finalScoreText = document.querySelector("#finalScore");
@@ -257,12 +247,6 @@ createQuiz();
 });
 
 
-//  document.querySelector("#formSubmit").addEventListener("click", function(event) {
-//    event.stopPropagation()
-//    storeItem()
-
-//  });
-// \
 
 
  
