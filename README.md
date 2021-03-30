@@ -12,7 +12,7 @@ There are no specific installation instructions. However, the coding_quiz Applic
 
 URL: https://synag.github.io/code_quiz/
 
-Github repository: 
+Github repository: https://github.com/synag/code_quiz
 
 Folders and Files
 - ReadMe: Coding Quiz Instructions
@@ -26,7 +26,7 @@ Minimum usage requirements.
 
 Below is the Coding Quiz screenshot, the image shows the web application's appearance and functionality:
 
-![coding-quiz](code_quiz\assets\images\Demo-page.png)
+![coding-quiz](code_quiz\assets\image\Demo-page.png)
 
 
 
