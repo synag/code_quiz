@@ -215,6 +215,7 @@ var finalScoreText = document.querySelector("#finalScore");
 var submitBtn = document.querySelector("#submitBtn");
 submitBtn.addEventListener("click", function(){
 storeItem()
+alert("Thank you")
 getItem()
 
 });
